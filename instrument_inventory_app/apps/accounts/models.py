@@ -40,7 +40,8 @@ class Instrument(models.Model):
     serial_number = models.CharField(max_length=64, unique=True, blank=True, null=True)
 
     condition = models.CharField(max_length=64, choices=InstrumentCondition.choices, blank=True, null=True)
-    #Woodwind items
+
+    #Woodwind/Reed items
     mouth_piece = models.BooleanField(default=True)
     ligature = models.BooleanField(default=True)
     cork_grease = models.BooleanField(default=True)
@@ -51,7 +52,6 @@ class Instrument(models.Model):
 
     instrument_category = models.ForeignKey(
         InstrumentCategory, on_delete=models.SET_NULL, blank=True, null=True)
-
 
     def __str__(self):
             return self.student_name
