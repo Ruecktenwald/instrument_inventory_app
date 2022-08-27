@@ -1,11 +1,16 @@
 instrument_inventory_app
 
-Admin:
--Personal Trainers Website - Basic Nav (home, about, contact)
--Blog from Personal Trainer - (allow user comments)
+Admin
 
 
-Users:
--Users can create their own profile page and track progress data
--Users can create custom data visualizations graphs based on percentage, amount, distance, etc..
-# instrument_inventory_app
+- create instruments
+    -name
+    -serial number
+    -student name (or "not assigned")
+    -needs repair?
+    -condition percentage estimation
+    -qrcode to instrument profile page
+
+- profile page for each instrument with CRUD
+    -profile unique url uses instrument serial number
+    -qrcode generated with above link
