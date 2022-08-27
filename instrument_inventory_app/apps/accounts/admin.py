@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import UserProfile, UserPersona, UserInterest
+from .models import Instrument, InstrumentCategory, Locker
 
-admin.site.register(UserProfile)
-admin.site.register(UserPersona)
-admin.site.register(UserInterest)
+admin.site.register(Instrument)
+admin.site.register(InstrumentCategory)
+admin.site.register(Locker)
