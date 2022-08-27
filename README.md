@@ -4,11 +4,11 @@ Admin
 
 
 - create instruments
-    -name
-    -serial number
-    -student name (or "not assigned")
-    -needs repair?
-    -condition percentage estimation
+  X  -name
+  X  -serial number
+  X  -student name (or "not assigned")
+  X  -needs repair?
+  X  -condition percentage estimation
     -qrcode to instrument profile page
 
 - profile page for each instrument with CRUD
