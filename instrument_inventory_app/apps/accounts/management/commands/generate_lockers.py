@@ -3,7 +3,7 @@ from django.db import models
 from instrument_inventory_app.apps.accounts.models import Locker
 
 
-class Command():
+class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -11,3 +11,6 @@ class Command():
         Locker.objects.create(locker_number=i)
 
     print("200 lockers created!")
+
+    def handle(self, *args, **kwargs):
+        pass

@@ -3,9 +3,12 @@ from django.db import models
 from instrument_inventory_app.apps.accounts.models import Instrument
 
 
-class Command():
+class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+     def handle(self, *args, **kwargs):
+        pass
 
     Instrument.objects.all().delete()
 
