@@ -28,11 +28,11 @@ class Student(models.Model):
         p = "P"
         s = "S"
 
-    student_first_name = models.CharField(
-        max_length=64, unique=True, blank=True, null=True
+    first_name = models.CharField(
+        max_length=64, blank=True, null=True
     )
-    student_last_name = models.CharField(
-        max_length=64, unique=True, blank=True, null=True
+    last_name = models.CharField(
+        max_length=64, blank=True, null=True
     )
 
     grade = models.CharField(
@@ -43,7 +43,7 @@ class Student(models.Model):
     )
 
     def __str__(self):
-        return self.student_first_name + " " + self.student_last_name
+        return self.first_name + " " + self.last_name
 
 
 class InstrumentCategory(models.Model):
