@@ -12,4 +12,4 @@ class Command(BaseCommand):
     print("200 lockers deleted!")
 
     def handle(self, *args, **kwargs):
-        pass
+        return

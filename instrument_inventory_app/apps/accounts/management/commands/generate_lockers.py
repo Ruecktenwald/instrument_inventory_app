@@ -7,10 +7,15 @@ class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    for i in range(1, 200):
-        Locker.objects.create(locker_number=i)
-
-    print("200 lockers created!")
+    def add_arguments(self, parser):
+        parser.add_argument('number_of_lockers', type=int, help = 'I will show you how to make lockers like a robot.')
 
     def handle(self, *args, **kwargs):
-        pass
+        number_of_lockers = kwargs['number_of_lockers']
+
+
+        for i in range(number_of_lockers):
+            Locker.objects.create(locker_number=i)
+
+        print(f"{number_of_lockers} lockers created!")
+        return
