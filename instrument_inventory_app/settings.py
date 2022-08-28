@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "instrument_inventory_app.apps.accounts",
+    "django_seed",
 ]
 
 MIDDLEWARE = [
