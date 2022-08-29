@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import models
 from instrument_inventory_app.apps.accounts.models import Locker
 
-
 class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -15,7 +14,7 @@ class Command(BaseCommand):
 
 
         for i in range(number_of_lockers):
-            Locker.objects.create(locker_number=i)
+            Locker.objects.create(locker_number=(i+1))
 
         print(f"{number_of_lockers} lockers created!")
         return
