@@ -1,15 +1,15 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db import models
-from instrument_inventory_app.apps.accounts.models import Locker
+from instrument_inventory_app.apps.inventory.models import Student
 
 
 class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    Locker.objects.all().delete()
+     def handle(self, *args, **kwargs):
+        pass
 
-    print("200 lockers deleted!")
+    Student.objects.all().delete()
 
-    def handle(self, *args, **kwargs):
-        return
+    print("All students deleted!")

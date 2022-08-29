@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db import models
-from instrument_inventory_app.apps.accounts.models import Locker
+from instrument_inventory_app.apps.inventory.models import Locker
 
 class Command(BaseCommand):
     def __init__(self, *args, **kwargs):

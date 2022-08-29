@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "instrument_inventory_app.apps.accounts",
+    "instrument_inventory_app.apps.inventory",
 ]
 
 MIDDLEWARE = [
@@ -115,6 +115,6 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_URL = "accounts:login"
+LOGIN_URL = "inventory:login"
 LOGIN_REDIRECT_URL = "public:index"
 LOGOUT_REDIRECT_URL = "public:index"

@@ -1,5 +1,5 @@
 from django.db import models
-from instrument_inventory_app.apps.accounts.models import Student
+from instrument_inventory_app.apps.inventory.models import Student
 import pandas as pd
 
 data = pd.read_csv (r'instrument_inventory_app/apps/accounts/csv_files/students.csv')

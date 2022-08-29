@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db import models
-from instrument_inventory_app.apps.accounts.models import Instrument
+from instrument_inventory_app.apps.inventory.models import Instrument
 import csv
 
 class Command(BaseCommand):
