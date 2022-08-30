@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         return
 
-    with open('students.csv', 'r') as csv_file:
+    with open("students.csv", "r") as csv_file:
         csv_reader = csv.DictReader(csv_file)
 
         next(csv_reader)
@@ -19,7 +19,9 @@ class Command(BaseCommand):
         sum = 0
         for line in csv_reader:
 
-            Student.objects.create(first_name=line['first_name'], last_name=line['last_name'])
-            sum +=1
+            Student.objects.create(
+                first_name=line["first_name"], last_name=line["last_name"]
+            )
+            sum += 1
 
         print(f"{sum} students created!")
