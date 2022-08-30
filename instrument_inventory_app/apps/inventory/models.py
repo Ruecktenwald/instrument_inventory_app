@@ -5,6 +5,7 @@ from enum import Enum
 
 class Locker(models.Model):
     locker_number = models.CharField(max_length=3, blank=True, null=True)
+    lock_code = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.locker_number
@@ -13,10 +14,10 @@ class Locker(models.Model):
 class Student(models.Model):
     class Grades(Enum):  # A subclass of Enum
 
-        fifth = "5"
-        sixth = "6"
-        seventh = "7"
-        eighth = "8"
+        five = "5"
+        six = "6"
+        seven = "7"
+        eight = "8"
 
     class Homeroom(Enum):  # A subclass of Enum
 
@@ -25,12 +26,8 @@ class Student(models.Model):
         p = "P"
         s = "S"
 
-    first_name = models.CharField(
-        max_length=64, blank=True, null=True
-    )
-    last_name = models.CharField(
-        max_length=64, blank=True, null=True
-    )
+    first_name = models.CharField(max_length=64, blank=True, null=True)
+    last_name = models.CharField(max_length=64, blank=True, null=True)
 
     grade = models.CharField(
         max_length=10, choices=[(tag.name, tag.value) for tag in Grades]
@@ -43,22 +40,21 @@ class Student(models.Model):
         return self.first_name + " " + self.last_name
 
 
-class InstrumentCategory(models.Model):
-    class classification(DjangoChoices):
-        woodwind_instrument = ChoiceItem()
-        reed_instrument = ChoiceItem()
-        brass_instrument = ChoiceItem()
-        percussion_instrument = ChoiceItem()
+class InstrumentKind(DjangoChoices):
 
-    name = models.CharField(max_length=64, unique=True)
-    normalized_name = models.CharField(max_length=64, unique=True)
-    description = models.CharField(
-        max_length=64,
-        choices=classification.choices,
-    )
-
-    def __str__(self):
-        return self.name
+    oboe = ChoiceItem()
+    flute = ChoiceItem()
+    clarinet = ChoiceItem()
+    bass_clarinet = ChoiceItem()
+    bassoon = ChoiceItem()
+    alto_sax = ChoiceItem()
+    tenor_sax = ChoiceItem()
+    baritone_sax = ChoiceItem()
+    trumpet = ChoiceItem()
+    french_horn = ChoiceItem()
+    trombone = ChoiceItem()
+    baritone_horn = ChoiceItem()
+    bass_guitar = ChoiceItem()
 
 
 class InstrumentCondition(DjangoChoices):
@@ -79,6 +75,10 @@ class Instrument(models.Model):
         Student, on_delete=models.SET_NULL, blank=True, null=True
     )  # details
 
+    instrument_kind = models.CharField(
+        max_length=64, choices=InstrumentKind.choices, blank=True, null=True
+    )
+
     instrument_name = models.CharField(max_length=64, blank=True, null=True)
     serial_number = models.CharField(max_length=64, unique=True, blank=True, null=True)
 
@@ -97,13 +97,7 @@ class Instrument(models.Model):
     polishing_cloth = models.BooleanField(default=False)
     book = models.BooleanField(default=True)
 
-
-
     notes = models.CharField(max_length=500, blank=True, null=True)
-
-    instrument_category = models.ForeignKey(
-        InstrumentCategory, on_delete=models.SET_NULL, blank=True, null=True
-    )
 
     def __str__(self):
         return (

@@ -8,56 +8,162 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='InstrumentCategory',
+            name="InstrumentCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=64, unique=True)),
-                ('normalized_name', models.CharField(max_length=64, unique=True)),
-                ('description', models.CharField(choices=[('woodwind instrument', 'woodwind instrument'), ('reed instrument', 'reed instrument'), ('brass instrument', 'brass instrument'), ('percussion instrument', 'percussion instrument')], max_length=64)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=64, unique=True)),
+                ("normalized_name", models.CharField(max_length=64, unique=True)),
+                (
+                    "description",
+                    models.CharField(
+                        choices=[
+                            ("woodwind instrument", "woodwind instrument"),
+                            ("reed instrument", "reed instrument"),
+                            ("brass instrument", "brass instrument"),
+                            ("percussion instrument", "percussion instrument"),
+                        ],
+                        max_length=64,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Locker',
+            name="Locker",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('locker_number', models.CharField(blank=True, max_length=3, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "locker_number",
+                    models.CharField(blank=True, max_length=3, null=True),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Student',
+            name="Student",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(blank=True, max_length=64, null=True)),
-                ('last_name', models.CharField(blank=True, max_length=64, null=True)),
-                ('grade', models.CharField(choices=[('fifth', '5'), ('sixth', '6'), ('seventh', '7'), ('eighth', '8')], max_length=10)),
-                ('homeroom', models.CharField(choices=[('o', 'O'), ('g', 'G'), ('p', 'P'), ('s', 'S')], max_length=10)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(blank=True, max_length=64, null=True)),
+                ("last_name", models.CharField(blank=True, max_length=64, null=True)),
+                (
+                    "grade",
+                    models.CharField(
+                        choices=[
+                            ("fifth", "5"),
+                            ("sixth", "6"),
+                            ("seventh", "7"),
+                            ("eighth", "8"),
+                        ],
+                        max_length=10,
+                    ),
+                ),
+                (
+                    "homeroom",
+                    models.CharField(
+                        choices=[("o", "O"), ("g", "G"), ("p", "P"), ("s", "S")],
+                        max_length=10,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Instrument',
+            name="Instrument",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('instrument_name', models.CharField(blank=True, max_length=64, null=True)),
-                ('serial_number', models.CharField(blank=True, max_length=64, null=True, unique=True)),
-                ('condition', models.CharField(blank=True, choices=[('broken', 'broken'), ('needs repair soon', 'needs repair soon'), ('decent condition', 'decent condition'), ('excellent condition', 'excellent condition'), ('in repair shop', 'in repair shop')], max_length=64, null=True)),
-                ('mouth_piece', models.BooleanField(default=True)),
-                ('ligature', models.BooleanField(default=False)),
-                ('cork_grease', models.BooleanField(default=False)),
-                ('reeds', models.BooleanField(default=False)),
-                ('case', models.BooleanField(default=True)),
-                ('oil', models.BooleanField(default=False)),
-                ('swab', models.BooleanField(default=False)),
-                ('polishing_cloth', models.BooleanField(default=False)),
-                ('book', models.BooleanField(default=True)),
-                ('notes', models.CharField(blank=True, max_length=500, null=True)),
-                ('instrument_category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='inventory.instrumentcategory')),
-                ('locker_assignment', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='inventory.locker')),
-                ('student', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='inventory.student')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "instrument_name",
+                    models.CharField(blank=True, max_length=64, null=True),
+                ),
+                (
+                    "serial_number",
+                    models.CharField(blank=True, max_length=64, null=True, unique=True),
+                ),
+                (
+                    "condition",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("broken", "broken"),
+                            ("needs repair soon", "needs repair soon"),
+                            ("decent condition", "decent condition"),
+                            ("excellent condition", "excellent condition"),
+                            ("in repair shop", "in repair shop"),
+                        ],
+                        max_length=64,
+                        null=True,
+                    ),
+                ),
+                ("mouth_piece", models.BooleanField(default=True)),
+                ("ligature", models.BooleanField(default=False)),
+                ("cork_grease", models.BooleanField(default=False)),
+                ("reeds", models.BooleanField(default=False)),
+                ("case", models.BooleanField(default=True)),
+                ("oil", models.BooleanField(default=False)),
+                ("swab", models.BooleanField(default=False)),
+                ("polishing_cloth", models.BooleanField(default=False)),
+                ("book", models.BooleanField(default=True)),
+                ("notes", models.CharField(blank=True, max_length=500, null=True)),
+                (
+                    "instrument_category",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="inventory.instrumentcategory",
+                    ),
+                ),
+                (
+                    "locker_assignment",
+                    models.OneToOneField(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="inventory.locker",
+                    ),
+                ),
+                (
+                    "student",
+                    models.OneToOneField(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="inventory.student",
+                    ),
+                ),
             ],
         ),
     ]
