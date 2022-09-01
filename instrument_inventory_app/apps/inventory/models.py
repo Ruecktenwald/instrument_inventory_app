@@ -68,7 +68,7 @@ class InstrumentCondition(DjangoChoices):
 class Instrument(models.Model):
 
     locker_assignment = models.OneToOneField(
-        Locker, on_delete=models.SET_NULL, blank=True, null=True
+        Locker, on_delete=models.SET_NULL, blank=False, null=True
     )  # details
 
     student = models.OneToOneField(
@@ -76,26 +76,26 @@ class Instrument(models.Model):
     )  # details
 
     instrument_kind = models.CharField(
-        max_length=64, choices=InstrumentKind.choices, blank=True, null=True
+        max_length=64, choices=InstrumentKind.choices, blank=False, null=True
     )
 
     instrument_name = models.CharField(max_length=64, blank=True, null=True)
-    serial_number = models.CharField(max_length=64, unique=True, blank=True, null=True)
+    serial_number = models.CharField(max_length=64, unique=True, blank=False, null=True)
 
     condition = models.CharField(
-        max_length=64, choices=InstrumentCondition.choices, blank=True, null=True
+        max_length=64, choices=InstrumentCondition.choices,default='decent condition' ,blank=True, null=True
     )
 
     # Instrument accessory items
-    mouth_piece = models.BooleanField(default=True)
-    ligature = models.BooleanField(default=False)
-    cork_grease = models.BooleanField(default=False)
-    reeds = models.BooleanField(default=False)
-    case = models.BooleanField(default=True)
-    oil = models.BooleanField(default=False)
-    swab = models.BooleanField(default=False)
-    polishing_cloth = models.BooleanField(default=False)
-    book = models.BooleanField(default=True)
+    mouth_piece_accessory = models.BooleanField(default=True)
+    ligature_accessory = models.BooleanField(default=False)
+    cork_grease_accessory = models.BooleanField(default=False)
+    reeds_accessory = models.BooleanField(default=False)
+    case_accessory = models.BooleanField(default=True)
+    oil_accessory = models.BooleanField(default=False)
+    swab_accessory = models.BooleanField(default=False)
+    polishing_cloth_accessory = models.BooleanField(default=False)
+    book_accessory = models.BooleanField(default=True)
 
     notes = models.CharField(max_length=500, blank=True, null=True)
 

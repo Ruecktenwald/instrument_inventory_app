@@ -1,3 +1,5 @@
-instrument_name,serial_number,condition,mouth_piece,ligature,cork_grease,reeds,case,notes,instrument_category_id,student_id,locker_assignment_id
-Selmer Clarinet,112414,needs repair soon,1,1,1,1,1,,,,1001
-clarinet two,23423423,needs repair soon,1,1,1,1,1,,,,1002
+instrument_name,serial_number,condition,mouth_piece,ligature,cork_grease,reeds,case,oil,swab,polishing_cloth,book,notes,locker_assignment_id,student_id,instrument_kind
+Selmer Clarinet,112414,needs repair soon,1,0,0,0,1,0,0,0,1,,2,1,bassoon
+bass,12,needs repair soon,1,0,0,0,1,0,0,0,1,,5,2,bass clarinet
+Sassy Sax,1,broken,1,0,0,0,1,0,0,0,1,,8,4,tenor sax
+bass,112415,needs repair soon,1,0,0,0,1,0,0,0,1,,10,3,bass guitar

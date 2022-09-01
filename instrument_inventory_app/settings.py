@@ -116,5 +116,5 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_URL = "inventory:login"
-LOGIN_REDIRECT_URL = "public:index"
-LOGOUT_REDIRECT_URL = "public:index"
+LOGIN_REDIRECT_URL = "inventory:index"
+LOGOUT_REDIRECT_URL = "inventory:index"

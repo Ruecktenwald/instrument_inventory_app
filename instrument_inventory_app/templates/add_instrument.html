@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Create{% endblock %}
+
+{% block content %}
+
+<center>
+
+    <h1>Add Instrument to Database</h1>
+
+    <br/><br/>
+
+    {% if submitted %}
+
+    Successfully Submitted!
+
+
+    {% else %}
+
+    <form action="" method=POST>
+
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <input type="submit" value="Submit" class= "btn btn-outline-primary"></input>
+
+    </form>
+
+</center>
+{% endif %}
+
+{% endblock %}

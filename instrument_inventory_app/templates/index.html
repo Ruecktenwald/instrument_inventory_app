@@ -4,7 +4,76 @@
 
 {% block content %}
 <h1>
-    Template Homepage
-</h1>
+    Instrument Inventory
 
+</h1>
+<input class="form-control" id="myInput" type="text" placeholder="Search..">
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+              <th>Locker Number</th>
+              <th>Type</th>
+              <th>Brand</th>
+              <th>Condition</th>
+              <th>Serial Number</th>
+              <th>Assigned Student</th>
+              <th>Accessories</th>
+          </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for instrument in instruments %}
+        <tr>
+            <td>{{instrument.locker_assignment}}</td>
+            <td>{{instrument.instrument_kind}}</td>
+            <td>{{instrument.instrument_name}}</td>
+            <td>{{instrument.condition}}</td>
+            <td>{{instrument.serial_number}}</td>
+            <td>{{instrument.student}}</td>
+            <td>
+
+                 {% if instrument.reeds_accessory %}
+                 <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" checked="checked "name="accessory" value="{{instrument.reeds_accessory}}">Reeds
+                </label>
+
+            {% else %}
+            <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" "name="" value="{{instrument.reeds_accessory}}">No Reeds
+            </label>
+            {% endif %}
+        </div>
+        {% if instrument.ligature_accessory %}
+        <div class="form-check-inline">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" checked="checked "name="" value="{{instrument.ligature_accessory}}">Ligature
+        </label>
+    </div>
+    {% else %}
+
+    <div class="form-check-inline">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" "name="" value="{{instrument.ligature_accessory}}">No Ligature
+    </label>
+
+</td>
+</tr>
+{% endif %}
+{% endfor %}
+</div>
+<script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+</tbody>
+</table>
 {% endblock %}
+</div>
