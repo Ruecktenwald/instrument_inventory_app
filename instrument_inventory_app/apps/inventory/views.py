@@ -10,6 +10,15 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/profile.html"
 
 
+
+def instrument(request,instrument_id):
+    instrument = Instrument.objects.get(pk=instrument_id)
+
+    return render(request,'instrument.html',
+    {'instrument' : instrument})
+
+
+
 def add_instrument(request):
     submitted = False
     if request.method == "POST":
