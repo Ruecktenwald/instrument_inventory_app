@@ -7,5 +7,5 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("instrument_inventory_app.apps.inventory.urls")),
-    path("inventory/", include("instrument_inventory_app.apps.inventory.urls")),
+
 ]

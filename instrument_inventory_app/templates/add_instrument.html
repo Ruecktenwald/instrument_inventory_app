@@ -4,30 +4,117 @@
 
 {% block content %}
 
-<center>
 
-    <h1>Add Instrument to Database</h1>
+<h1>Add Instrument to Database</h1>
 
-    <br/><br/>
+<br/><br/>
 
-    {% if submitted %}
+{% if submitted %}
 
-    Successfully Submitted!
+Successfully Submitted!
 
 
-    {% else %}
+{% else %}
 
-    <form action="" method=POST>
+<form method="POST" >
+    {% csrf_token %}
 
-        {% csrf_token %}
+    <div class="container-fluid"  width=50% height=75%>
+        <div class="row">
+            <div class="col">
+                <div>
+                    <div >
+                        <label><b>Assign a Locker:</b></label>
+                        {{form.locker_assignment}}
+                    </div>
+                    <br>
+                    <div >
+                        <b>Instrument Group:</b>
+                        {{form.instrument_kind}}
+                    </div>
+                    <br>
+                    <div>
+                        <label><b>Instrument Brand:</b></label>
+                        {{form.instrument_name}}
+                    </div>
+                    <br>
+                    <div >
+                        <label><b>Serial Number:</b></label>
+                        {{form.serial_number}}
+                    </div>
+                    <br>
+                    <div>
+                        <label><b>Assign to Student:</b></label>
+                        {{form.student}}
+                    </div>
+                    <br>
 
-        {{form.as_p}}
+                </div>
+            </div>
+            <br>
 
-        <input type="submit" value="Submit" class= "btn btn-outline-primary"></input>
+            <div class="col">
+             <div class="form-check">
+                <label>Instrument Case</label>
+                {{form.case_accessory}}
+            </div>
+            <br>
+            <div class="form-check">
+                <label class="form-check-label">Mouth Piece</label>
+                {{form.mouth_piece_accessory}}
+            </div>
+            <br>
+            <div class="form-check">
+                <label>Music Book</label>
+                {{form.book_accessory}}
+            </div>
+            <br>
+            <div class="form-check">
+                <label>Reeds</label>
+                {{form.reeds_accessory}}
+            </div>
+            <br>
+            <div class="form-check">
+                <label>Ligature</label>
+                {{form.ligature_accessory}}
+            </div>
+        </div>
 
-    </form>
+        <div class="col">
+            <div class="form-check">
+                <label>Cork Grease</label>
+                {{form.cork_grease_accessory}}
+            </div>
+            <br>
 
-</center>
+            <div class="form-check">
+                <label>Cleaning Swab</label>
+                {{form.swab_accessory}}
+            </div>
+            <br>
+            <div class="form-check">
+                <label>Instrument Oil </label>
+                {{form.oil_accessory}}
+            </div>
+            <br>
+            <div class="form-check">
+                <label>Polshing Cloth</label>
+                {{form.polishing_cloth_accessory}}
+            </div>
+        </div>
+
+        <div class="col">
+            <label><b>Notes:</b></label>
+            {{form.notes}}
+            <br> <br><br> <br><br> <br>
+            <!-- <input type="cancel" value="cancel" class= "btn btn-outline-danger"></input> -->
+
+            <input type="submit" value="Submit" class= "btn btn-outline-primary"></input>
+<br> <br><br> <br><br> <br>
+        </div>
+    </div>
+</form>
+
 {% endif %}
 
 {% endblock %}

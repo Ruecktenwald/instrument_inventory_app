@@ -83,7 +83,11 @@ class Instrument(models.Model):
     serial_number = models.CharField(max_length=64, unique=True, blank=False, null=True)
 
     condition = models.CharField(
-        max_length=64, choices=InstrumentCondition.choices,default='decent condition' ,blank=True, null=True
+        max_length=64,
+        choices=InstrumentCondition.choices,
+        default="decent condition",
+        blank=True,
+        null=True,
     )
 
     # Instrument accessory items

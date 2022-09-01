@@ -1,14 +1,13 @@
-
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <ul class="navbar-nav ">
         {% url 'inventory:index' as index_url %}
         <li  {% if request.path == index_url %} class="nav-item active" {% else %}class="nav-item" {%endif%} >
             <a class="nav-link">{% if request.path == index_url %}Inventory</a>{% else %}<a class="nav-link" href="{{ index_url }}">Inventory</a>{% endif %}</a>
         </li>
         {% url 'inventory:add_instrument' as add_instrument_url %}
-        <li {% if request.path == add_instrument_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
+        <li {% if request.path == add_instrument_url %} class="nav-item active " {% else %}class="nav-item" {%endif%}>
 
-            <a class="nav-link">{% if request.path == add_instrument_url %}Add New Instrument</a>{% else %}<a class="nav-link" href="{{ add_instrument_url }}">Add New Instrument</a>{% endif %}</a>
+            <a class="nav-link ">{% if request.path == add_instrument_url %}Add New Instrument</a>{% else %}<a class="nav-link" href="{{ add_instrument_url }}">Add New Instrument</a>{% endif %}</a>
 
         </li>
         {% url 'inventory:contact' as contact_url %}
@@ -23,22 +22,18 @@
 
             <a class="nav-link" >{% if request.path == profile_url %} {{user.username }}</a>{% else %}<a class="nav-link" href="{{ profile_url }}">{{ user.username }}</a>
         </li>
+    </ul>
+    </div>
+    <div class="navbar-text" >
+      <span class=""><a class="nav justify-content-end " href="{% url 'inventory:logout' %}">Logout</a></span>
 
-        <li class="nav-item" >
-            <a class="nav-link" href="{% url 'inventory:logout' %}">Logout</a>
-        </li>
-        {% endif %}
+      {% endif %}
 
-        {% else %}
+      {% else %}
 
-        <li class="nav-item" >
-           <a class="nav-link" href="{% url 'inventory:login' %}">Login</a>
-       </li>
+      <a class="nav justify-content-end" href="{% url 'inventory:login' %}">Login</a>
 
-       {% endif %}
-   </li>
-</ul>
+
+{% endif %}
+
 </nav>
-
-
-

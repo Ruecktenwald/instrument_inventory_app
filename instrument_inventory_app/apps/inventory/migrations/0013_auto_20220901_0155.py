@@ -7,23 +7,45 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0012_alter_locker_locker_number'),
+        ("inventory", "0012_alter_locker_locker_number"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='instrument',
-            name='instrument_kind',
-            field=models.CharField(choices=[('oboe', 'oboe'), ('flute', 'flute'), ('clarinet', 'clarinet'), ('bass clarinet', 'bass clarinet'), ('bassoon', 'bassoon'), ('alto sax', 'alto sax'), ('tenor sax', 'tenor sax'), ('baritone sax', 'baritone sax'), ('trumpet', 'trumpet'), ('french horn', 'french horn'), ('trombone', 'trombone'), ('baritone horn', 'baritone horn'), ('bass guitar', 'bass guitar')], max_length=64, null=True),
+            model_name="instrument",
+            name="instrument_kind",
+            field=models.CharField(
+                choices=[
+                    ("oboe", "oboe"),
+                    ("flute", "flute"),
+                    ("clarinet", "clarinet"),
+                    ("bass clarinet", "bass clarinet"),
+                    ("bassoon", "bassoon"),
+                    ("alto sax", "alto sax"),
+                    ("tenor sax", "tenor sax"),
+                    ("baritone sax", "baritone sax"),
+                    ("trumpet", "trumpet"),
+                    ("french horn", "french horn"),
+                    ("trombone", "trombone"),
+                    ("baritone horn", "baritone horn"),
+                    ("bass guitar", "bass guitar"),
+                ],
+                max_length=64,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='instrument',
-            name='locker_assignment',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, to='inventory.locker'),
+            model_name="instrument",
+            name="locker_assignment",
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="inventory.locker",
+            ),
         ),
         migrations.AlterField(
-            model_name='instrument',
-            name='serial_number',
+            model_name="instrument",
+            name="serial_number",
             field=models.CharField(max_length=64, null=True, unique=True),
         ),
     ]

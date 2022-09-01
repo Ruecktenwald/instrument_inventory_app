@@ -10,21 +10,21 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/profile.html"
 
 
-
-
 def add_instrument(request):
     submitted = False
-    if request.method == 'POST':
+    if request.method == "POST":
         form = InstrumentForm(request.POST)
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('add_instrument?submitted=True')
+            return HttpResponseRedirect("add_instrument?submitted=True")
     else:
         form = InstrumentForm
-        if 'submitted' in request.GET:
-            submitted=True
-    return render(request, "add_instrument.html", {'form' :form, 'submitted' :submitted})
+        if "submitted" in request.GET:
+            submitted = True
+    return render(
+        request, "add_instrument.html", {"form" :form, "submitted" :submitted}
+    )
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -41,6 +41,3 @@ def about(request: HttpRequest) -> HttpResponse:
 
 def contact(request: HttpRequest) -> HttpResponse:
     return render(request, "contact.html")
-
-
-
