@@ -7,11 +7,8 @@ from instrument_inventory_app.apps.inventory.forms import InstrumentForm
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = "inventory/profile.html"
+    template_name = "inventory/metrics.html"
     instruments = Instrument.objects.all()
-
-
-
 
 
 
@@ -57,10 +54,6 @@ def update_instrument(request, instrument_id):
 
     return render(request,'instruments/update_instrument.html',
     {"form" :form, "instrument" :instrument})
-
-
-
-
 
 
 

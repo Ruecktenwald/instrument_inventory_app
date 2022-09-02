@@ -18,6 +18,7 @@
         <th>View/Edit</th>
       </tr>
     </thead>
+    {% if user.is_authenticated %}
     <tbody id="myTable">
       {% for instrument in instruments %}
       <tr>
@@ -54,7 +55,7 @@
         <td> <a class="btn btn-outline-primary btn-sm" href="{% url 'inventory:update_instrument' instrument.id %}">Edit/Update</a></td>
       </tr>
       {% endfor %}
-
+{%endif%}
     </div>
 
     <script>
