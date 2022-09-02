@@ -8,8 +8,7 @@ from instrument_inventory_app.apps.inventory.forms import InstrumentForm
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/profile.html"
-
-
+    instruments = Instrument.objects.all()
 
 
 

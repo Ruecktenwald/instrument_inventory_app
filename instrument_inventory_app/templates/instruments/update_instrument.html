@@ -6,15 +6,10 @@
 
 
 <h1>{{instrument.student}}'s {{instrument.instrument_kin}}</h1>
-
+<!-- <input type="cancel" value="Back" class= "btn btn-outline-danger"></input> -->
 <br/><br/>
 
-{% if updated %}
 
-Successfully updated!
-
-
-{% else %}
 
 <form method='POST' >
     {% csrf_token %}
@@ -43,6 +38,11 @@ Successfully updated!
                         {{form.serial_number}}
                     </div>
                     <br>
+                    <div >
+                        <label><b>Instruments Condition:</b></label>
+                        {{form.condition}}
+                    </div>
+                    <br>
                     <div>
                         <label><b>Assign to Student:</b></label>
                         {{form.student}}
@@ -53,7 +53,7 @@ Successfully updated!
             </div>
             <br>
 
-            <div class="col">
+            <div class="col-sm">
              <div class="form-check">
                 <label>Instrument Case</label>
                 {{form.case_accessory}}
@@ -80,7 +80,7 @@ Successfully updated!
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-sm">
             <div class="form-check">
                 <label>Cork Grease</label>
                 {{form.cork_grease_accessory}}
@@ -106,15 +106,17 @@ Successfully updated!
         <div class="col">
             <label><b>Notes:</b></label>
             {{form.notes}}
-            <br> <br><br> <br><br> <br>
-            <!-- <input type="cancel" value="cancel" class= "btn btn-outline-danger"></input> -->
 
-            <input type="submit" value="Submit" class= "btn btn-outline-primary"></input>
-<br> <br><br> <br><br> <br>
+            <br> <br><br> <br><br> <br>
+
+            <div>
+                <input type="submit" value="Save/Back" class= "btn btn-outline-primary"></input>
+            </div>
+            <br> <br><br> <br><br> <br>
         </div>
     </div>
 </form>
 
-{% endif %}
+
 
 {% endblock %}

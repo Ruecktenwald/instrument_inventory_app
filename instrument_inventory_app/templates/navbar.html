@@ -10,11 +10,11 @@
             <a class="nav-link ">{% if request.path == add_instrument_url %}Add New Instrument</a>{% else %}<a class="nav-link" href="{{ add_instrument_url }}">Add New Instrument</a>{% endif %}</a>
 
         </li>
-        {% url 'inventory:contact' as contact_url %}
+       <!--  {% url 'inventory:contact' as contact_url %}
         <li {% if request.path == contact_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
 
             <a class="nav-link">{% if request.path == contact_url %}Contact</a>{% else %}<a class="nav-link" href="{{ contact_url }}">Contact</a>{% endif %}</a>
-        </li>
+        </li> -->
 
         {% if user.is_authenticated %}
         {% url 'inventory:profile' as profile_url %}

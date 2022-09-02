@@ -26,10 +26,34 @@
         <td>{{instrument.locker_assignment}}</td>
         <td>{{instrument.instrument_kind}}</td>
         <td>{{instrument.instrument_name}}</td>
-        <td>{{instrument.condition}}</td>
+        <td>
+          {{instrument.condition}}
+          {% if instrument.condition == "broken"%}
+          <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {% elif instrument.condition == "needs repair soon"%}
+          <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {% elif instrument.condition == "decent condition"%}
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {% elif instrument.condition == "excellent condition"%}
+          <div class="progress">
+            <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {%else%}
+          <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {%endif%}
+
+        </td>
         <td>{{instrument.serial_number}}</td>
         <td>{{instrument.student}}</td>
-        <td> <a href="{% url 'inventory:update_instrument' instrument.id %}">Edit/Update</a></td>
+        <td> <a class="btn btn-outline-primary btn-sm" href="{% url 'inventory:update_instrument' instrument.id %}">Edit/Update</a></td>
       </tr>
       {% endfor %}
 
