@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<nav class="navbar navbar-collapse navbar-expand-lg bg-dark navbar-dark">
     <ul class="navbar-nav ">
+
         {% url 'inventory:index' as index_url %}
         <li  {% if request.path == index_url %} class="nav-item active" {% else %}class="nav-item" {%endif%} >
             <a class="nav-link">{% if request.path == index_url %}Inventory</a>{% else %}<a class="nav-link" href="{{ index_url }}">Inventory</a>{% endif %}</a>
@@ -10,20 +11,15 @@
             <a class="nav-link ">{% if request.path == add_instrument_url %}Add New Instrument</a>{% else %}<a class="nav-link" href="{{ add_instrument_url }}">Add New Instrument</a>{% endif %}</a>
 
         </li>
-       <!--  {% url 'inventory:contact' as contact_url %}
-        <li {% if request.path == contact_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
-
-            <a class="nav-link">{% if request.path == contact_url %}Contact</a>{% else %}<a class="nav-link" href="{{ contact_url }}">Contact</a>{% endif %}</a>
-        </li> -->
 
         {% if user.is_authenticated %}
         {% url 'inventory:profile' as profile_url %}
         <li {% if request.path == profile_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
 
-            <a class="nav-link" >{% if request.path == profile_url %} {{user.username }}</a>{% else %}<a class="nav-link" href="{{ profile_url }}">{{ user.username }}</a>
+            <a class="nav-link" >{% if request.path == profile_url %}Metrics</a>{% else %}<a class="nav-link" href="{{ profile_url }}">Metrics</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  " href="{% url 'inventory:logout' %}">Logout</a>
+            <a class="nav-link" href="{% url 'inventory:logout' %}">Logout</a>
         </li>
         {% endif %}
 
@@ -32,6 +28,16 @@
             <a class="nav-link" href="{% url 'inventory:login' %}">Login</a>
         </li>
     </ul>
-    {% endif %}
+  {% endif %}
 
 </nav>
+
+
+
+
+
+ <!--  {% url 'inventory:contact' as contact_url %}
+        <li {% if request.path == contact_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
+
+            <a class="nav-link">{% if request.path == contact_url %}Contact</a>{% else %}<a class="nav-link" href="{{ contact_url }}">Contact</a>{% endif %}</a>
+        </li> -->

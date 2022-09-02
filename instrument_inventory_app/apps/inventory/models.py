@@ -79,7 +79,7 @@ class Instrument(models.Model):
         max_length=64, choices=InstrumentKind.choices, blank=False, null=True
     )
 
-    instrument_name = models.CharField(max_length=64, blank=True, null=True)
+    instrument_name = models.CharField(max_length=64, blank=False, null=True)
     serial_number = models.CharField(max_length=64, unique=True, blank=False, null=True)
 
     condition = models.CharField(
