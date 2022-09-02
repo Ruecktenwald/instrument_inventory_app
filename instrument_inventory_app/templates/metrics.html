@@ -4,13 +4,11 @@
 
 {% block content %}
 <h1>
-    {{ user.username.capitalize }} Metrics
+    Metrics
 </h1>
 
 <div>
-{%for instrument in instruments%}
-{{instrument.reeds_accessory}}
-{%endfor%}
+Total Reeds: {{reeds}} out of 50
 </div>
 
 

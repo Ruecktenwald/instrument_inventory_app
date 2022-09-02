@@ -6,9 +6,11 @@ from instrument_inventory_app.apps.inventory.models import Instrument
 from instrument_inventory_app.apps.inventory.forms import InstrumentForm
 
 
+
+
+
 class ProfileView(LoginRequiredMixin, TemplateView):
-    template_name = "inventory/metrics.html"
-    instruments = Instrument.objects.all()
+    template_name = "inventory/profile.html"
 
 
 
@@ -22,7 +24,7 @@ def index(request):
 def instrument(request,instrument_id):
     instrument = Instrument.objects.get(pk=instrument_id)
 
-    return render(request,'instruments/instrument.html',
+    return render(request,'instrument.html',
     {'instrument' : instrument})
 
 
@@ -40,7 +42,7 @@ def add_instrument(request):
         if "submitted" in request.GET:
             submitted = True
     return render(
-        request, "instruments/add_instrument.html", {"form" :form, "submitted" :submitted}
+        request, "add_instrument.html", {"form" :form, "submitted" :submitted}
     )
 
 
@@ -52,17 +54,33 @@ def update_instrument(request, instrument_id):
         form.save()
         return redirect("inventory:index")
 
-    return render(request,'instruments/update_instrument.html',
+    return render(request,'update_instrument.html',
     {"form" :form, "instrument" :instrument})
 
 
 
 
+def metrics(request: HttpRequest) -> HttpResponse:
 
+
+    instruments = Instrument.objects.all()
+    reeds=0
+
+    for instrument in instruments:
+
+        if instrument.reeds_accessory:
+            reeds+=1
+
+
+
+
+
+
+
+    return render(request, "metrics.html",{'instruments':instruments,'reeds':reeds})
 
 def about(request: HttpRequest) -> HttpResponse:
     return render(request, "about.html")
 
 
-def contact(request: HttpRequest) -> HttpResponse:
-    return render(request, "contact.html")
+
