@@ -5,18 +5,18 @@
 {% block content %}
 
 
-<h1>{{instrument.student}}'s {{instrument.instrument_kind}}</h1>
+<h1>{{instrument.student}}'s {{instrument.instrument_kin}}</h1>
 
 <br/><br/>
 
-{% if submitted %}
+{% if updated %}
 
-Successfully Submitted!
+Successfully updated!
 
 
 {% else %}
 
-<form method='' >
+<form method='POST' >
     {% csrf_token %}
 
     <div class="container-fluid"  width=50% height=75%>

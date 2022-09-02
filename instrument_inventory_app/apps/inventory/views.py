@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
@@ -50,9 +50,14 @@ def add_instrument(request):
 
 def update_instrument(request, instrument_id):
     instrument = Instrument.objects.get(pk=instrument_id)
+    form = InstrumentForm(request.POST or None, instance=instrument)
+
+    if form.is_valid():
+        form.save()
+        return redirect("inventory:index")
 
     return render(request,'instruments/update_instrument.html',
-    {'instrument' : instrument})
+    {"form" :form, "instrument" :instrument})
 
 
 
