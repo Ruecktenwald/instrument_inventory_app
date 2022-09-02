@@ -11,10 +11,22 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
 
 
+
+
+
+
+
+def index(request):
+    instruments = Instrument.objects.all().order_by("instrument_kind")
+
+    return render(request, "index.html" ,
+        {'instruments' : instruments})
+
+
 def instrument(request,instrument_id):
     instrument = Instrument.objects.get(pk=instrument_id)
 
-    return render(request,'instrument.html',
+    return render(request,'instruments/instrument.html',
     {'instrument' : instrument})
 
 
@@ -32,16 +44,23 @@ def add_instrument(request):
         if "submitted" in request.GET:
             submitted = True
     return render(
-        request, "add_instrument.html", {"form" :form, "submitted" :submitted}
+        request, "instruments/add_instrument.html", {"form" :form, "submitted" :submitted}
     )
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    context = {
-        "instruments": Instrument.objects.all().order_by("instrument_kind"),
-        # "accessories": Instrument.objects.filter(__endswith="accessory"),
-    }
-    return render(request, "index.html", context)
+def update_instrument(request, instrument_id):
+    instrument = Instrument.objects.get(pk=instrument_id)
+
+    return render(request,'instruments/update_instrument.html',
+    {'instrument' : instrument})
+
+
+
+
+
+
+
+
 
 
 def about(request: HttpRequest) -> HttpResponse:

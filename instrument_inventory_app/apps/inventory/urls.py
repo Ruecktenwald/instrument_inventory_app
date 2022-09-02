@@ -16,6 +16,9 @@ path("profile", views.ProfileView.as_view(), name="profile"),
     path("", views.index, name="index"),
     path("about", views.about, name="about"),
     path("contact", views.contact, name="contact"),
-    path("add_instrument", views.add_instrument, name="add_instrument"),
-    path("<instrument_id>", views.instrument, name="instrument"),
+    path("instruments/add_instrument", views.add_instrument, name="add_instrument"),
+    path("instruments/<instrument_id>", views.instrument, name="instrument"),
+    path("instruments/update_instrument/<instrument_id>", views.update_instrument, name="update_instrument"),
+
+
     ]

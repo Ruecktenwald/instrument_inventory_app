@@ -22,18 +22,16 @@
 
             <a class="nav-link" >{% if request.path == profile_url %} {{user.username }}</a>{% else %}<a class="nav-link" href="{{ profile_url }}">{{ user.username }}</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link  " href="{% url 'inventory:logout' %}">Logout</a>
+        </li>
+        {% endif %}
+
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'inventory:login' %}">Login</a>
+        </li>
     </ul>
-    </div>
-    <div class="navbar-text" >
-      <span class=""><a class="nav justify-content-end " href="{% url 'inventory:logout' %}">Logout</a></span>
-
-      {% endif %}
-
-      {% else %}
-
-      <a class="nav justify-content-end" href="{% url 'inventory:login' %}">Login</a>
-
-
-{% endif %}
+    {% endif %}
 
 </nav>
