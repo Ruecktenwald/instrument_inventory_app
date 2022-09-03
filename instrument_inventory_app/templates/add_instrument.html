@@ -8,11 +8,12 @@
 <h1>Add Instrument to Database</h1>
 
 <br/><br/>
+<center>
+    {% if submitted %}
 
-{% if submitted %}
-
-Successfully Submitted!
-
+    <h6>Successfully Submitted!</h6>
+    <meta http-equiv="refresh" content="1;url={% url 'inventory:index'%}" />
+</center>
 
 {% else %}
 
@@ -21,7 +22,7 @@ Successfully Submitted!
 
     <div class="container-fluid"  width=50% height=75%>
         <div class="row">
-            <div class="col">
+            <div class="col-3">
                 <div>
                     <div >
                         <label><b>Assign a Locker:</b></label>
@@ -48,19 +49,14 @@ Successfully Submitted!
                         <label><b>Instruments Condition:</b></label>
                         {{form.condition}}
                     </div>
-                    <br>
-                    <div>
-                        <label><b>Assign to Student:</b></label>
-                        {{form.student}}
-                    </div>
-                    <br>
+
 
                 </div>
             </div>
             <br>
 
-            <div class="col">
-             <div class="form-check">
+            <div class="col-2">
+               <div class="form-check">
                 <label>Instrument Case</label>
                 {{form.case_accessory}}
             </div>
@@ -86,7 +82,7 @@ Successfully Submitted!
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-2">
             <div class="form-check">
                 <label>Cork Grease</label>
                 {{form.cork_grease_accessory}}
@@ -109,10 +105,16 @@ Successfully Submitted!
             </div>
         </div>
 
-        <div class="col">
+        <div class="col-5">
             <label><b>Notes:</b></label>
             {{form.notes}}
-            <br> <br><br> <br><br> <br>
+            <br>
+            <div>
+                <label><b>Assign to Student:</b></label>
+                {{form.student}}
+            </div>
+
+            <br> <br><br>
             <!-- <input type="cancel" value="cancel" class= "btn btn-outline-danger"></input> -->
 
             <input type="submit" value="Create" class= "btn btn-outline-primary"></input>
