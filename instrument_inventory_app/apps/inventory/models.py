@@ -5,7 +5,7 @@ from enum import Enum
 
 class Locker(models.Model):
     locker_number = models.CharField(max_length=3, blank=True, null=True)
-    lock_code = models.IntegerField(blank=True, null=True)
+
 
     def __str__(self):
         return self.locker_number

@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block title %}Brass Metrics{% endblock %}
+
+{% block content %}
+<h1>
+    Woodwind Metrics
+</h1>
+
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-12'>
+
+
+
+            <!-- ######  TRUMPETS   ###### -->
+
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th class="col-2">Total Trumpets</th>
+                    <th class="col-2">Book</th>
+                    <th class="col-2">Oil</th>
+                    <th class="col-2">Polishing Cloth</th>
+                    <th class="col-2">Mouth Pieces</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{trumpet_only}}
+                    </td>
+                    <td>
+                        {{trumpet_books_only}} of {{trumpet_only}}
+                    </td>
+                    <td>
+                        {{trumpet_oil_accessory_only}} of {{trumpet_only}}
+                    </td>
+                    <td>
+                        {{trumpet_polishing_cloth_accessory_only}} of {{trumpet_only}}
+                    </td>
+                    <td>
+                        {{trumpet_mouth_piece_accessory_only}} of {{trumpet_only}}
+                    </td>
+                </tr>
+
+            </tbody>
+            <!-- ######  Trombones   ###### -->
+            <div >
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="col-2">Trombones</th>
+                    <th class="col-2">Book</th>
+                    <th class="col-2">Oil</th>
+                    <th class="col-2">Polishing Cloth</th>
+                    <th class="col-2">Mouth Pieces</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td>
+                        {{trombone_only}}
+                    </td>
+                    <td>
+                        {{trombone_books_only}} of {{trombone_only}}
+                    </td>
+                    <td>
+                        {{trombone_oil_accessory_only}} of {{trombone_only}}
+                    </td>
+                    <td>
+                        {{trombone_polishing_cloth_accessory_only}} of {{trombone_only}}
+                    </td>
+                    <td>
+                        {{trombone_mouth_piece_accessory_only}} of {{trombone_only}}
+                    </td>
+                </tr>
+            </tbody>
+
+
+
+            <!-- ######  TOTAL BRASS INSTRUMENTS   ###### -->
+            <div>
+                <div>
+                    <div >
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>All Brass Oil</th>
+                            <th>Polishing Cloth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{total_oil}} of {{total_brass}}
+                            </td>
+                            <td>
+                                {{total_polishing_cloths}} of {{total_brass}}
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+<!--
+
+            <div class='container-fluid' >
+                <div >
+                    <div  >
+                        <h5>Woodwind Parts</h5>
+                        <div>
+                            Total Reeds: {{reeds_only}} out of 50
+                        </div>
+                        <div>
+                            Total Ligatures: {{ligatures_only}} out of 50
+                        </div>
+                        <div>
+                            Total Woodwind Mouth Pieces: {{woodwind_mouth_piece_accessory_only}} out of 50
+                        </div>
+                        <br>
+
+                        <h5>Instrument Books</h5>
+
+                        <div>
+                            Total Clarinet Books: {{clarinet_books_only}} out of 50
+                        </div>
+                        <div>
+                            Total Alto Sax Books: {{alto_sax_books_only}} out of 50
+                        </div>
+                        <div>
+                            Total Bassoon Books: {{bassoon_books_only}} out of 50
+                        </div>
+
+                        <div>
+                            Total Flute Books: {{flute_books_only}} out of 50
+                        </div>
+                        <div>
+                            Total Oboe Books: {{oboe_books_only}} out of 50
+                        </div>
+                        <div>
+                            Total Bass Clarinet Books: {{bass_clarinet_books_only}} out of 50
+                        </div>
+                        <div>
+                            Total Tenor Sax Books: {{tenor_sax_books_only}} out of 50
+                        </div>
+
+                        <div>
+                            Total Bass Guitar Books: {{bass_guitar_books_only}} out of 50
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+
+
+
+
+
+
+            <div>
+                Total Baritone Horns: {{baritone_horn_only}} out of 50
+            </div>
+            <div>
+                Total French Horns: {{french_horn_only}} out of 50
+            </div>
+            <div>
+                Total Trombones: {{trombone_only}} out of 50
+            </div>
+            <div>
+                Total Trumpets: {{trumpet_only}} out of 50
+            </div>
+            <div>
+
+            </div>
+            <div>
+                Total Trombone Mouth Pieces: {{trombone_mouth_piece_accessory_only}} out of 50
+            </div>
+            <div>
+                Total French Horn Mouth Pieces: {{french_horn_mouth_piece_accessory_only}} out of 50
+            </div>
+            <div>
+                Total Baritone Horn Mouth Pieces: {{baritone_horn_mouth_piece_accessory_only}} out of 50
+            </div>
+
+            <div>
+                Total Baritone Horn Oil: {{baritone_horn_oil_accessory_only}} out of 50
+            </div>
+            <div>
+                Total French Horn Oil: {{french_horn_oil_accessory_only}} out of 50
+            </div>
+            <div>
+
+            </div>
+            <div>
+                Total Trombone Oil: {{trombone_oil_accessory_only}} out of 50
+            </div>
+            <div>
+                Total French Horn Books: {{french_horn_sax_books_only}} out of 50
+            </div>
+
+            <div>
+                Total Trombone Books: {{trombone_books_only}} out of 50
+            </div>
+            <div>
+                Total Baritone Horn Books: {{baritone_horn_books_only}} out of 50
+            </div>
+            <div>
+
+            </div>
+
+
+            <div>
+
+            </div>
+            <div>
+                Total Trombone Polishing Cloth: {{trombone_polishing_cloth_accessory_only}} out of 50
+            </div>
+            <div>
+                Total French Horn Polishing Cloth: {{french_horn_polishing_cloth_accessory_only}} out of 50
+            </div>
+            <div>
+                Total Baritone Horn Polishing Cloth: {{baritone_horn_polishing_cloth_accessory_only}} out of 50
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+{% endblock %}

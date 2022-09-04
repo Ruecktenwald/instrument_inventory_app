@@ -14,11 +14,10 @@ urlpatterns = [
         ),
     path("logout", auth_views.LogoutView.as_view(), name="logout"),
     path("", views.index, name="index"),
-    path("about", views.about, name="about"),
-    path("metrics", views.metrics, name="metrics"),
+    path("woodwind_metrics", views.woodwind_metrics, name="woodwind_metrics"),
+    path("brass_metrics", views.brass_metrics, name="brass_metrics"),
     path("add_instrument", views.add_instrument, name="add_instrument"),
-    path("<instrument_id>", views.instrument, name="instrument"),
-    path("update_instrument/<instrument_id>", views.update_instrument, name="update_instrument"),
-    #path("instruments/delete_instrument/<instrument_id>", views.delete_instrument, name="delete_instrument"),
+    path("<instrument_id>", views.update_instrument, name="update_instrument"),
+
 
     ]

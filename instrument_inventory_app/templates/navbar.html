@@ -3,7 +3,8 @@
 
     <ul class="navbar-nav ">
       {% if user.is_authenticated %}
-      {% url 'inventory:metrics' as metrics_url %}
+      {% url 'inventory:woodwind_metrics' as woodwind_metrics_url %}
+      {% url 'inventory:brass_metrics' as brass_metrics_url %}
       {% url 'inventory:contact' as contact_url %}
       {% url 'inventory:add_instrument' as add_instrument_url %}
       {% url 'inventory:index' as index_url %}
@@ -17,9 +18,14 @@
 
     </li>
 
-    <li {% if request.path == metrics_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
+    <li {% if request.path == brass_metrics_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
 
-        <a class="nav-link" >{% if request.path == metrics_url %}Metrics</a>{% else %}<a class="nav-link" href="{{ metrics_url }}">Metrics</a>{% endif %}
+        <a class="nav-link" >{% if request.path == brass_metrics_url %}Brass Instruments</a>{% else %}<a class="nav-link" href="{{ brass_metrics_url }}">Brass Instruments</a>{% endif %}
+    </li>
+
+    <li {% if request.path == woodwind_metrics_url %} class="nav-item active" {% else %}class="nav-item" {%endif%}>
+
+        <a class="nav-link" >{% if request.path == woodwind_metrics_url %}Woodwind Instruments</a>{% else %}<a class="nav-link" href="{{ woodwind_metrics_url }}">Woodwind Instruments</a>{% endif %}
     </li>
 
 
