@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         return
 
-    with open("accounts_instrument.csv", "r") as csv_file:
+    with open("inventory_instrument.csv", "r") as csv_file:
         csv_reader = csv.DictReader(csv_file)
 
         # next(csv_reader)
@@ -23,13 +23,13 @@ class Command(BaseCommand):
                 instrument_name=line["instrument_name"],
                 serial_number=line["serial_number"],
                 condition=line["condition"],
-                mouth_piece=line["mouth_piece"],
-                ligature=line["ligature"],
-                cork_grease=line["cork_grease"],
-                reeds=line["reeds"],
-                case=line["case"],
+                mouth_piece_accessory=line["mouth_piece"],
+                ligature_accessory=line["ligature"],
+                cork_grease_accessory=line["cork_grease"],
+                reeds_accessory=line["reeds"],
+                case_accessory=line["case"],
                 notes=line["notes"],
-                instrument_category_id=line["instrument_category_id"],
+                instrument_kind=line["instrument_kind"],
                 locker_assignment_id=line["locker_assignment_id"],
                 student_id=line["student_id"],
             )

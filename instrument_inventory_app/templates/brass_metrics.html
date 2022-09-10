@@ -10,13 +10,14 @@
     <div class="table-responsive">
       <table class="table">
         <thead>
-          <tr>
+          <tr >
             <th class="col-1">Locker Number</th>
             <th class="col-1">Type</th>
             <th class="col-1">Book</th>
             <th class="col-1">Mouth Piece</th>
             <th class="col-1">Oil</th>
             <th class="col-1">Polishing Cloth</th>
+            <th class="col-1">Condition</th>
             <th class="col-1">Serial Number</th>
             <th class="col-1">Assigned Student</th>
             <th class="col-1">View/Edit</th>
@@ -24,24 +25,23 @@
     </thead>
 
     <br>
-
     <div>
 
         <tbody id="myTable"><h4>Search Missing Items</h4>
             <div><input class="form-control" id="myInput" type="text" placeholder="Search.."></div>
 
-            {% for instrument in missing_oil_or_cloth %}
+            {% for instrument in instruments_with_missing_items %}
             <tr>
                 <td>{{instrument.locker_assignment}}</td>
                 <td>{{instrument.instrument_kind}}</td>
                 <td>
                     {% if instrument.book_accessory == False%}
-                    Missing Book
+                    <div>Missing Book</div>
                     <div class="progress">
                         <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     {% else %}
-                    Present
+                    Item Present
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -50,12 +50,12 @@
                 </td>
                 <td>
                     {% if instrument.mouth_piece_accessory == False%}
-                    Missing Book
+                    Missing Mouth Piece
                     <div class="progress">
                         <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     {% else %}
-                    Present
+                    Item Present
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -69,7 +69,7 @@
                         <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     {% else %}
-                    Present
+                    Item Present
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -77,20 +77,44 @@
 
                 </td>
                 <td>
-
                     {% if instrument.polishing_cloth_accessory == False%}
-                    Missing Polishing Cloth
+                    Missing Cloth
                     <div class="progress">
                         <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     {% else %}
-                    Present
+                    Item Present
                     <div class="progress">
                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     {%endif%}
 
                 </td>
+                <td>
+          {{instrument.condition}}
+          {% if instrument.condition == "broken"%}
+          <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {% elif instrument.condition == "needs repair soon"%}
+          <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {% elif instrument.condition == "decent condition"%}
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {% elif instrument.condition == "excellent condition"%}
+          <div class="progress">
+            <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {%else%}
+          <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          {%endif%}
+
+        </td>
                 <td>{{instrument.serial_number}}</td>
                 <td>{{instrument.student}}</td>
                 <td> <a class="btn btn-outline-primary btn-sm" href="{% url 'inventory:update_instrument' instrument.id %}">Edit/Update</a></td>
@@ -100,8 +124,6 @@
 </div>
 
 {%endfor%}
-
-
 
 
 <script>
@@ -116,238 +138,5 @@
 </script>
 </tbody>
 </div>
-
-
-<div class='col-4'>
-    <div>
-        <div >
-          <table class="table">
-            <thead>
-              <tr>
-                <th>All Brass Oil / Total Instruments</th>
-                <th>Polishing Cloth / Total Instruments</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    {{total_oil}} of {{total_brass}}
-                </td>
-                <td>
-                    {{total_polishing_cloths}} of {{total_brass}}
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</div>
-
-<br><br>
-
-
-
-
-
-
-
-
-<div class='container-fluid'>
-    <div class='row'>
-        <div class='col-6'>
-            <h4>Instrument Inventory Accessory Status</h4>
-            <div>
-                <table class="table">
-                    <thead>
-                        {%for instrument,num in brass_counts%}
-                        <tr>
-                            <th class="col-2">Total {{instrument}}</th>
-                            <th class="col-2">Book</th>
-                            <th class="col-2">Oil</th>
-                            <th class="col-2">Polishing Cloth</th>
-                            <th class="col-2">Mouth Pieces</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                             <!--  {{trumpet_books_only}} of {{trumpet_only}} -->
-                         </td>
-                         <td>
-                            of
-                        </td>
-                       <!--  <td>
-                            {{trumpet_polishing_cloth_accessory_only}} of {{trumpet_only}}
-                        </td>
-                        <td>
-                            {{trumpet_mouth_piece_accessory_only}} of {{trumpet_only}}
-                        </td> -->
-                    </tr>
-{%endfor%}
-
-                </tbody>
-                <!-- ######  Trombones   ###### -->
-               <!--  <div >
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th class="col-2">Trombones</th>
-                        <th class="col-2">Book</th>
-                        <th class="col-2">Oil</th>
-                        <th class="col-2">Polishing Cloth</th>
-                        <th class="col-2">Mouth Pieces</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    <tr>
-                        <td>
-                            {{trombone_only}}
-                        </td>
-                        <td>
-                            {{trombone_books_only}} of {{trombone_only}}
-                        </td>
-                        <td>
-                            {{trombone_oil_accessory_only}} of {{trombone_only}}
-                        </td>
-                        <td>
-                            {{trombone_polishing_cloth_accessory_only}} of {{trombone_only}}
-                        </td>
-                        <td>
-                            {{trombone_mouth_piece_accessory_only}} of {{trombone_only}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table> -->
-
-
-            <!-- ######  TOTAL BRASS INSTRUMENTS   ###### -->
-
-
-<!--
-
-            <div class='container-fluid' >
-                <div >
-                    <div  >
-                        <h5>Woodwind Parts</h5>
-                        <div>
-                            Total Reeds: {{reeds_only}} out of 50
-                        </div>
-                        <div>
-                            Total Ligatures: {{ligatures_only}} out of 50
-                        </div>
-                        <div>
-                            Total Woodwind Mouth Pieces: {{woodwind_mouth_piece_accessory_only}} out of 50
-                        </div>
-                        <br>
-
-                        <h5>Instrument Books</h5>
-
-                        <div>
-                            Total Clarinet Books: {{clarinet_books_only}} out of 50
-                        </div>
-                        <div>
-                            Total Alto Sax Books: {{alto_sax_books_only}} out of 50
-                        </div>
-                        <div>
-                            Total Bassoon Books: {{bassoon_books_only}} out of 50
-                        </div>
-
-                        <div>
-                            Total Flute Books: {{flute_books_only}} out of 50
-                        </div>
-                        <div>
-                            Total Oboe Books: {{oboe_books_only}} out of 50
-                        </div>
-                        <div>
-                            Total Bass Clarinet Books: {{bass_clarinet_books_only}} out of 50
-                        </div>
-                        <div>
-                            Total Tenor Sax Books: {{tenor_sax_books_only}} out of 50
-                        </div>
-
-                        <div>
-                            Total Bass Guitar Books: {{bass_guitar_books_only}} out of 50
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-
-
-
-
-
-
-
-            <div>
-                Total Baritone Horns: {{baritone_horn_only}} out of 50
-            </div>
-            <div>
-                Total French Horns: {{french_horn_only}} out of 50
-            </div>
-            <div>
-                Total Trombones: {{trombone_only}} out of 50
-            </div>
-            <div>
-                Total Trumpets: {{trumpet_only}} out of 50
-            </div>
-            <div>
-
-            </div>
-            <div>
-                Total Trombone Mouth Pieces: {{trombone_mouth_piece_accessory_only}} out of 50
-            </div>
-            <div>
-                Total French Horn Mouth Pieces: {{french_horn_mouth_piece_accessory_only}} out of 50
-            </div>
-            <div>
-                Total Baritone Horn Mouth Pieces: {{baritone_horn_mouth_piece_accessory_only}} out of 50
-            </div>
-
-            <div>
-                Total Baritone Horn Oil: {{baritone_horn_oil_accessory_only}} out of 50
-            </div>
-            <div>
-                Total French Horn Oil: {{french_horn_oil_accessory_only}} out of 50
-            </div>
-            <div>
-
-            </div>
-            <div>
-                Total Trombone Oil: {{trombone_oil_accessory_only}} out of 50
-            </div>
-            <div>
-                Total French Horn Books: {{french_horn_sax_books_only}} out of 50
-            </div>
-
-            <div>
-                Total Trombone Books: {{trombone_books_only}} out of 50
-            </div>
-            <div>
-                Total Baritone Horn Books: {{baritone_horn_books_only}} out of 50
-            </div>
-            <div>
-
-            </div>
-
-
-            <div>
-
-            </div>
-            <div>
-                Total Trombone Polishing Cloth: {{trombone_polishing_cloth_accessory_only}} out of 50
-            </div>
-            <div>
-                Total French Horn Polishing Cloth: {{french_horn_polishing_cloth_accessory_only}} out of 50
-            </div>
-            <div>
-                Total Baritone Horn Polishing Cloth: {{baritone_horn_polishing_cloth_accessory_only}} out of 50
-            </div>
-
-        </div>
-    </div>
-</div> -->
-
 {% endblock %}
+
