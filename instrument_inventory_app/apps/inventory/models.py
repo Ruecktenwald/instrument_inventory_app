@@ -4,16 +4,17 @@ from enum import Enum
 
 
 class Lock(models.Model):
-    lock_serial_number = models.CharField(max_length=7,blank=True, null=True)
-    combination_number = models.CharField(max_length=6,blank=True, null=True)
+    lock_serial_number = models.CharField(max_length=7, blank=True, null=True)
+    combination_number = models.CharField(max_length=6, blank=True, null=True)
 
     def __str__(self):
         return self.lock_serial_number
 
+
 class Locker(models.Model):
     locker_number = models.CharField(max_length=3, blank=True, null=True)
     lock_assignment = models.OneToOneField(
-    Lock, on_delete=models.SET_NULL, blank=False, null=True
+        Lock, on_delete=models.SET_NULL, blank=False, null=True
     )
 
     def __str__(self):

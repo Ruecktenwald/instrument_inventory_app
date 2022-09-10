@@ -6,22 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0016_auto_20220904_0143'),
+        ("inventory", "0016_auto_20220904_0143"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='lock',
-            name='lock_code',
+            model_name="lock",
+            name="lock_code",
         ),
         migrations.AddField(
-            model_name='lock',
-            name='combination_number',
+            model_name="lock",
+            name="combination_number",
             field=models.CharField(blank=True, max_length=6, null=True),
         ),
         migrations.AddField(
-            model_name='lock',
-            name='lock_serial_number',
+            model_name="lock",
+            name="lock_serial_number",
             field=models.CharField(blank=True, max_length=7, null=True),
         ),
     ]

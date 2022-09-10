@@ -7,24 +7,36 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0015_alter_instrument_instrument_name'),
+        ("inventory", "0015_alter_instrument_instrument_name"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Lock',
+            name="Lock",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('lock_code', models.IntegerField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("lock_code", models.IntegerField(blank=True, null=True)),
             ],
         ),
         migrations.RemoveField(
-            model_name='locker',
-            name='lock_code',
+            model_name="locker",
+            name="lock_code",
         ),
         migrations.AddField(
-            model_name='locker',
-            name='lock_assignment',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, to='inventory.lock'),
+            model_name="locker",
+            name="lock_assignment",
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="inventory.lock",
+            ),
         ),
     ]
