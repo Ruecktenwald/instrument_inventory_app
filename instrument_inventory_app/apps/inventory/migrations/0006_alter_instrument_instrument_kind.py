@@ -6,13 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0005_alter_instrument_instrument_kind'),
+        ("inventory", "0005_alter_instrument_instrument_kind"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='instrument',
-            name='instrument_kind',
-            field=models.CharField(choices=[('oboe', 'oboe'), ('flute', 'flute'), ('clarinet', 'clarinet'), ('bass clarinet', 'bass clarinet'), ('bassoon', 'bassoon'), ('alto sax', 'alto sax'), ('tenor sax', 'tenor sax'), ('baritone sax', 'baritone sax'), ('trumpet', 'trumpet'), ('french horn', 'french horn'), ('trombone', 'trombone'), ('baritone horn', 'baritone horn'), ('guitar', 'guitar'), ('percussion', 'percussion'), ('keyboard', 'keyboard')], max_length=64, null=True),
+            model_name="instrument",
+            name="instrument_kind",
+            field=models.CharField(
+                choices=[
+                    ("oboe", "oboe"),
+                    ("flute", "flute"),
+                    ("clarinet", "clarinet"),
+                    ("bass clarinet", "bass clarinet"),
+                    ("bassoon", "bassoon"),
+                    ("alto sax", "alto sax"),
+                    ("tenor sax", "tenor sax"),
+                    ("baritone sax", "baritone sax"),
+                    ("trumpet", "trumpet"),
+                    ("french horn", "french horn"),
+                    ("trombone", "trombone"),
+                    ("baritone horn", "baritone horn"),
+                    ("guitar", "guitar"),
+                    ("percussion", "percussion"),
+                    ("keyboard", "keyboard"),
+                ],
+                max_length=64,
+                null=True,
+            ),
         ),
     ]

@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 
-
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/profile.html"
 
@@ -72,7 +71,6 @@ def brass_metrics(request: HttpRequest) -> HttpResponse:
     )
     instruments_with_missing_items = []
 
-    
     ############################
     # Brass Instrument Queries#
     ############################
@@ -85,8 +83,6 @@ def brass_metrics(request: HttpRequest) -> HttpResponse:
             or instrument.book_accessory == False
         ):
             instruments_with_missing_items.append(instrument)
-
-
 
     return render(
         request,
@@ -105,14 +101,11 @@ def woodwind_metrics(request: HttpRequest) -> HttpResponse:
         instrument_kind__in=["alto sax", "tenor sax", "baritone sax", "oboe", "bassoon"]
     )
 
-   
     instruments_with_missing_items = []
-
 
     ##########################
     # Woodwind Part Queries  #
     ##########################
-  
 
     for instrument in instruments:
         if (
@@ -122,10 +115,8 @@ def woodwind_metrics(request: HttpRequest) -> HttpResponse:
             or instrument.book_accessory == False
             or instrument.ligature_accessory == False
             or instrument.cork_grease_accessory == False
-            
         ):
             instruments_with_missing_items.append(instrument)
-
 
     return render(
         request,
@@ -135,7 +126,3 @@ def woodwind_metrics(request: HttpRequest) -> HttpResponse:
             "instruments": instruments,
         },
     )
-  
-
-
-

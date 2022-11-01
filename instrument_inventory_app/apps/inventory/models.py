@@ -80,7 +80,10 @@ class InstrumentCondition(DjangoChoices):
 class Instrument(models.Model):
 
     locker_assignment = models.OneToOneField(
-        Locker, on_delete=models.SET_NULL, blank=True, null=True,
+        Locker,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )  # details
 
     student = models.OneToOneField(

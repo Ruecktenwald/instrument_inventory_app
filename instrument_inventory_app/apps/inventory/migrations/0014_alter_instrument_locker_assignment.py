@@ -7,13 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0013_alter_instrument_locker_assignment'),
+        ("inventory", "0013_alter_instrument_locker_assignment"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='instrument',
-            name='locker_assignment',
-            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='inventory.locker'),
+            model_name="instrument",
+            name="locker_assignment",
+            field=models.OneToOneField(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="inventory.locker",
+            ),
         ),
     ]

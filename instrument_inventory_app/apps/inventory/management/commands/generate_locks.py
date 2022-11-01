@@ -20,7 +20,9 @@ class Command(BaseCommand):
         for line in csv_reader:
 
             Lock.objects.create(
-                lock_serial_number=line["lock_serial_number"], combination_number=line["combination_number"],id=line["lock_serial_number"]
+                lock_serial_number=line["lock_serial_number"],
+                combination_number=line["combination_number"],
+                id=line["lock_serial_number"],
             )
             sum += 1
 
