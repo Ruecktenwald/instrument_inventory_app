@@ -5,7 +5,7 @@ from enum import Enum
 
 class Lock(models.Model):
     lock_serial_number = models.CharField(max_length=7, blank=True, null=True)
-    combination_number = models.CharField(max_length=6, blank=True, null=True)
+    combination_number = models.CharField(max_length=8, blank=True, null=True)
 
     def __str__(self):
         return self.lock_serial_number
@@ -64,7 +64,9 @@ class InstrumentKind(DjangoChoices):
     french_horn = ChoiceItem()
     trombone = ChoiceItem()
     baritone_horn = ChoiceItem()
-    bass_guitar = ChoiceItem()
+    guitar = ChoiceItem()
+    percussion = ChoiceItem()
+    keyboard = ChoiceItem()
 
 
 class InstrumentCondition(DjangoChoices):
@@ -78,7 +80,7 @@ class InstrumentCondition(DjangoChoices):
 class Instrument(models.Model):
 
     locker_assignment = models.OneToOneField(
-        Locker, on_delete=models.SET_NULL, blank=False, null=True
+        Locker, on_delete=models.SET_NULL, blank=True, null=True,
     )  # details
 
     student = models.OneToOneField(
@@ -118,6 +120,6 @@ class Instrument(models.Model):
             self.instrument_name
             + " - Serial#: "
             + self.serial_number
-            + " - Locker#: "
-            + self.locker_assignment.locker_number
+            + " - Type: "
+            + self.instrument_kind
         )
