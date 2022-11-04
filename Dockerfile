@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3.10-alpine
 
 WORKDIR /instrument_inventory_app
 
@@ -12,4 +12,7 @@ RUN \
 
 COPY . .
 
-CMD ["python3",  "manage.py", "runserver", "0.0.0.0:8000" ]
+EXPOSE 8000
+
+
+CMD ["python3",  "manage.py", "runserver", "0.0.0.0:8000"]
